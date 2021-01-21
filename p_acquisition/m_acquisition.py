@@ -36,6 +36,7 @@ def cleaning_data(df_complete) -> pd.DataFrame:
     # cleaning personal_info age column.
     df_complete['age'] = df_complete['age'].astype("string")
     df_complete['age'] = df_complete['age'].str.replace(' years old', '')
+    df_complete['age'] = df_complete['age'].apply(lambda x: re.sub('\D', '', x)).astype(int)
 
     for x in range(1980, 2050):
         df_complete['age'] = df_complete['age'].str.replace(f'{x}', f'{2016 - x}')
