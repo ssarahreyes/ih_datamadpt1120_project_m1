@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 def cleaning_data(df_cleaned) -> pd.DataFrame:
 
@@ -27,7 +28,18 @@ def cleaning_data(df_cleaned) -> pd.DataFrame:
     df_cleaned['dem_education_level'] = df_cleaned['dem_education_level'].replace('no', 'no education')
     df_cleaned['dem_education_level'] = df_cleaned['dem_education_level'].fillna('no education')
 
+    # cleaning children column column.
+    df_cleaned['dem_has_children'] = df_cleaned['dem_has_children'].str.lower()
+
+    # cleaning Q3 column.
+    df_cleaned['question_bbi_2016wave4_basicincome_effect'] = \
+        [re.sub(r'\‰Û_', '', x) for x in df_cleaned['question_bbi_2016wave4_basicincome_effect']]
+
     print('Cleaning data is done!')
+
+    df_cleaned.to_csv('data/processed/data_cleaned.csv')
+
+    print('data_cleaned.csv exported to data/processed folder!')
 
     return df_cleaned
 
@@ -47,7 +59,10 @@ def renaming_columns(df_renamed):
                                'question_bbi_2016wave4_basicincome_vote': 'Q2: vote',
                                'question_bbi_2016wave4_basicincome_effect': 'Q3: effect',
                                'question_bbi_2016wave4_basicincome_argumentsfor': 'Q4: arguments for',
-                               'question_bbi_2016wave4_basicincome_argumentsagainst': 'Q5: arguments against'}, inplace=True)
+                               'question_bbi_2016wave4_basicincome_argumentsagainst': 'Q5: arguments against'},
+                      inplace=True)
+
 
     print('Columns are renamed!')
+
     return df_renamed

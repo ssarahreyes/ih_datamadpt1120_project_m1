@@ -13,6 +13,7 @@ def get_tables(path):
 
     print('Connecting to the data base...')
 
+    #path = 'data/raw/raw_data_project_m1.db'
     engine = create_engine(f'sqlite:///{path}')
     df_personal_info = pd.read_sql("SELECT * FROM personal_info", engine)
     df_country_info = pd.read_sql("SELECT * FROM country_info", engine)
@@ -51,10 +52,14 @@ def get_jobs(df_api):
 
     dict_uuid_jobs_title = dict(zip(list_uuid_key, list_title_value))
 
+    # applying this dict to the data frame columns.
     df_api['Job Title'] = df_api['normalized_job_code']
 
     for uuid, title in dict_uuid_jobs_title.items():
         df_api.loc[df_api['normalized_job_code'] == uuid, 'Job Title'] = title
+
+    # changing null values in Job Title column.
+    df_api['Job Title'] = df_api['Job Title'].fillna('No job')
 
     print('Info of API added to data frame.')
 
@@ -93,8 +98,3 @@ def get_country(df_complete):
     print('Info of countries added to data frame.')
 
     return df_complete
-
-
-def acquire(path):
-    tables = get_tables(path)
-    return tables

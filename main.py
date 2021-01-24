@@ -27,9 +27,13 @@ def main(arguments):
     df_quantity = man.adding_quantity(df_renamed)
     df_percentage = man.adding_percentage(df_quantity)
 
+    # exporting the first table
     mre.export_table(df_percentage, arguments.country)
 
-    print('pipe line ready!')
+    # bonus 1
+    df_votes = mre.export_votes(df_percentage)
+
+    print('Process completed!')
 
 if __name__ == '__main__':
 
