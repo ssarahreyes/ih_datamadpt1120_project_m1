@@ -2,31 +2,30 @@
 In this project we have created a data pipeline that unites the results of the survey from a data base with data obtained from API connection and web scraping process in order to enrich the results. 
 
 # :fast_forward: One-liner
-'python main.py -p /data/raw/raw_data_project_m1.db -c Spain'
-
+```
+python main.py -p /data/raw/raw_data_project_m1.db -c Spain
+```
 # :computer: Technology stack
-Python==3.7.3
-pandas==0.24.2
-sqlalchemy==1.3.16
-requests==2.23.0
-bs4==4.9.1
-numpy==1.18.1
-argparse==3.2
+Python==3.7.3__
+pandas==0.24.2__
+sqlalchemy==1.3.16__
+requests==2.23.0__
+bs4==4.9.1__
+numpy==1.18.1__
+argparse==3.2__
 
 # :zap: Data
 There are 3 different datasources involved:
 - Tables (.db) with the results of the survey. You can see the data in data/raw folder.
-- API. We will use the [API](http://dataatwork.org/data/)API from the Open Skills Project.
+- API. We will use the [API](http://dataatwork.org/data/)from the Open Skills Project.
 - Web Scraping. Finally, we will need to retrieve information about country codes from [Eurostat website](https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Country_codes).
 
 
-```
-### :file_folder: Folder structure
+# :file_folder: Folder structure
 ```
 └── project
     ├── __trash__
     ├── .gitignore
-    ├── .env
     ├── requirements.txt
     ├── README.md
     ├── main.py
@@ -49,6 +48,7 @@ There are 3 different datasources involved:
         ├── processed
         └── results
 ```
+
 # :incoming_envelope: Contact info
 If you have some question, email me to sarisinhache@gmail.com!
 
