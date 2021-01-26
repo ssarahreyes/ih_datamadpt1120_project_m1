@@ -1,7 +1,7 @@
-![alt text](https://images.pexels.com/photos/3943746/pexels-photo-3943746.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
-
 # :bar_chart: Data Pipeline Basic Income Survey
 In this project we have created a data pipeline that unites the results of the survey from a data base with data obtained from API connection and web scraping process in order to enrich the results. 
+
+![alt text](https://images.pexels.com/photos/3943746/pexels-photo-3943746.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
 
 # :fast_forward: One-liner
 ```
