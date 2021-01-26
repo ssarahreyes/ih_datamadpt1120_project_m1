@@ -8,12 +8,12 @@ In this project we have created a data pipeline that unites the results of the s
 python main.py -p /data/raw/raw_data_project_m1.db -c Spain
 ```
 # :computer: Technology stack
-- Python==3.7.3
-- pandas==0.24.2
-- sqlalchemy==1.3.16
-- requests==2.23.0
-- bs4==4.9.1
-- numpy==1.18.1
+- Python==3.8.5
+- pandas==1.1.3 
+- sqlalchemy==1.3.20
+- requests==2.25.1
+- seaborn==0.11.0
+- numpy==1.19.2
 - argparse==3.2
 
 # :zap: Data
