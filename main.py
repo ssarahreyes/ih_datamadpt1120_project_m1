@@ -9,7 +9,6 @@ def argument_parser():
     parse arguments to script
     """
     parser = argparse.ArgumentParser(description='get data of basic income survey')
-    parser.add_argument("-p", "--path", help="specify path of the database", type=str, required=True)
     parser.add_argument("-c", "--country", help="specify country for the results", default="all countries", type=str)
     args = parser.parse_args()
 
@@ -19,7 +18,7 @@ def main(arguments):
 
     print('starting process')
 
-    tables = mac.get_tables(arguments.path)
+    tables = mac.get_tables()
     df_cleaned = mwr.cleaning_data(tables)
     df_jobs = mac.get_jobs(df_cleaned)
     df_countries = mac.get_country(df_jobs)
@@ -32,6 +31,9 @@ def main(arguments):
 
     # bonus 1
     df_votes = mre.export_votes(df_percentage)
+
+    # bonus 2
+    df_skills = mre.skills(df_percentage)
 
     print('Process completed!')
 

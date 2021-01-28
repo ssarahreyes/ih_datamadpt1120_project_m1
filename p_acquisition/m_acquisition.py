@@ -5,15 +5,15 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-def get_tables(path):
+def get_tables():
     """"
-    :param: path of the data base
-    :return: data frame with all the data, united by 'uuid'.
+    from the path for the data base, we obtain a data frame
+    with all the data united by 'uuid' column.
     """
 
     print('Connecting to the data base...')
 
-    #path = 'data/raw/raw_data_project_m1.db'
+    path = 'data/raw/raw_data_project_m1.db'
     engine = create_engine(f'sqlite:///{path}')
     df_personal_info = pd.read_sql("SELECT * FROM personal_info", engine)
     df_country_info = pd.read_sql("SELECT * FROM country_info", engine)
@@ -24,7 +24,7 @@ def get_tables(path):
     dfs_list = [df_personal_info, df_country_info, df_career_info, df_poll_info]
     df_info = reduce(lambda left, right: pd.merge(left, right, on='uuid'), dfs_list)
 
-    # exporting the data frame to processed data folder.
+    # exporting the data frame to processed d$ata folder.
     df_info.to_csv(f'./data/processed/info_dataframe.csv', index=True)
 
     print('Connected to the data base.')

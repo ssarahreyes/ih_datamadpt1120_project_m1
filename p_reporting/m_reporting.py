@@ -1,5 +1,6 @@
 import re
 import pandas as pd
+import requests
 
 def export_table(df_final, country):
 
@@ -106,6 +107,53 @@ def export_votes(df_votes):
     number_of_votes.to_csv('data/result/number_of_votes.csv', index=False)
 
     print("Votes calculated and exported as a data frame in data/result folder!")
+
+
+# bonus 2
+def skills(df_skills):
+
+    print("Let's see how many skills are for each level of education...")
+
+    # extracting data from API and creating a dictionary with jobs and skills
+    list_jobs_key = []
+    list_skills_values = []
+
+    job_code_unique = df_skills['Job Code'].unique()
+
+    for code in job_code_unique:
+        response_skills = requests.get(f'http://api.dataatwork.org/v1/jobs/{code}/related_skills').json()
+        if list(response_skills.keys())[0] == 'error':
+            pass
+        else:
+            list_jobs_key.append(response_skills['job_uuid'])
+            list_skills_values.append(response_skills['skills'])
+
+    # creating a data frame with skills data and making a list.
+    df_skills_data = pd.DataFrame(list_skills_values[0])
+    list_of_skills = df_skills_data['skill_name'].tolist()
+
+    # dict with jobs uuid and most important skill for each.
+    dict_job_skills_title = dict(zip(list_jobs_key, list_of_skills))
+
+    # we add this dict to our data frame.
+    df_skills['Skills'] = df_skills['Job Code']
+
+    for job_uuid, skill in dict_job_skills_title.items():
+        df_skills.loc[df_skills['Job Code'] == job_uuid, 'Skills'] = skill
+
+    # cleaning some data.
+    df_skills['Skills'] = df_skills['Skills'].str.replace('\d+', '')
+    df_skills['Skills'] = df_skills['Skills'].str.replace('abfbdfebaeebea', '')
+    df_skills['Skills'] = df_skills['Skills'].str.replace('aceadcddddbafaab', '')
+    df_skills['Skills'] = df_skills['Skills'].str.replace('aceeaaeeaaaecd', '')
+
+    # the result
+    df_bonus = df_skills[['Education Level', 'Skills']].groupby('Education Level', as_index=False).count()
+    df_bonus_2 = df_bonus.sort_values(by='Skills', ascending=False)
+
+    df_bonus_2.to_csv('data/result/skills_by_education_level.csv', index=False)
+    print('skills_by_education_level.csv exported to data/results folder!')
+
 
 
 
