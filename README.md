@@ -27,7 +27,6 @@ There are 3 different datasources involved:
 # :file_folder: Folder structure
 ```
 └── project
-    ├── __trash__
     ├── .gitignore
     ├── requirements.txt
     ├── README.md
