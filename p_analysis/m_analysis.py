@@ -32,8 +32,6 @@ def adding_percentage(df_percentage):
 
     df_percentage['Percentage'] = ((df_percentage['Total Votes Per Country'] /
                                    df_percentage['Total Votes Per Country'].sum())*100).round(6)
-    # adding the % symbol
-    #df_percentage['Percentage'] = df_percentage['Percentage'].astype(float).map(lambda x: '{:.4%}'.format(x))
 
     print('Percentage column added.')
 

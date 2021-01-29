@@ -4,6 +4,7 @@ In this project we have created a data pipeline that unites the results of the s
 ![alt text](https://images.pexels.com/photos/3943746/pexels-photo-3943746.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
 
 # :fast_forward: One-liner
+To obtain the results of the survey for just one country:
 ```
 python main.py -p /data/raw/raw_data_project_m1.db -c Spain
 ```
@@ -31,8 +32,6 @@ There are 3 different datasources involved:
     ├── requirements.txt
     ├── README.md
     ├── main.py
-    ├── notebooks
-    │   ├── notebook1.ipynb
     ├── p_acquisition
     │   ├── __init__.py
     │   └── m_acquisition.py
