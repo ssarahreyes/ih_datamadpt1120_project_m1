@@ -31,8 +31,11 @@ def get_tables():
 
     return df_info
 
-# connecting API
+
 def get_jobs(df_api):
+    """"
+    Adding API info to data frame.
+    """
 
     print('Connecting to API...')
 
@@ -65,8 +68,11 @@ def get_jobs(df_api):
 
     return df_api
 
-# using web scraping to get the country names by the country codes.
+
 def get_country(df_complete):
+    """"
+    Using web scraping to get the country names by the country codes.
+    """
 
     print('Doing web scraping to extract countries info...')
 

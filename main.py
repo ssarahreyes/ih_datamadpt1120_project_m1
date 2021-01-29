@@ -11,7 +11,6 @@ def argument_parser():
     parser = argparse.ArgumentParser(description='get data of basic income survey')
     parser.add_argument("-c", "--country", help="specify country for the results", default="all countries", type=str)
     args = parser.parse_args()
-
     return args
 
 def main(arguments):
@@ -35,7 +34,8 @@ def main(arguments):
     # bonus 2
     df_skills = mre.skills(df_percentage)
 
-    print('Process completed!')
+    print('========================= Pipeline is complete. You may find the results in the folder '
+          './data/results =========================')
 
 if __name__ == '__main__':
 

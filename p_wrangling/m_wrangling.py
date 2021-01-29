@@ -2,6 +2,9 @@ import pandas as pd
 import re
 
 def cleaning_data(df_cleaned) -> pd.DataFrame:
+    """"
+    Cleaning the data of the data frame.
+    """
 
     print('Cleaning data...')
 

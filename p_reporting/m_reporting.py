@@ -3,8 +3,13 @@ import pandas as pd
 import requests
 
 def export_table(df_final, country):
+    """"
+    Exporting .csv file with Country, Job Title, Medium Age, Quantity of workers who voted
+    and Percentage of votes by country.
+    If you choose a country using -c, results will be for this country.
+    """
 
-    print('Time to export the Data Frame...')
+    print('Time to export the results!')
 
     # exporting the table for all countries.
     df_result = df_final[['Country', 'Job Title', 'Age', 'Quantity', 'Percentage']].\
@@ -27,14 +32,14 @@ def export_table(df_final, country):
         df_result_per_country.to_csv(f'data/result/result_per_country_{country}.csv', index=False)
         return 'file exported!'
 
-    print('Data Frame exported!')
+    print('Results exported!')
 
 # bonus 1
 def export_votes(df_votes):
     """"
     Calculate total votes for pro and against arguments and exporting a table.
     """
-    print("Let's calculate the number of votes...")
+    print("Now, let's calculate the number of votes...")
 
     # extracting data for Q4: pro arguments.
     arguments_for = [info for info in df_votes['Q4: arguments for']]
@@ -106,11 +111,14 @@ def export_votes(df_votes):
 
     number_of_votes.to_csv('data/result/number_of_votes.csv', index=False)
 
-    print("Votes calculated and exported as a data frame in data/result folder!")
+    print("number_of_votes.csv file in data/result folder!")
 
 
 # bonus 2
 def skills(df_skills):
+    """"
+    Calculating the number of skills per education level.
+    """
 
     print("Let's see how many skills are for each level of education...")
 
@@ -152,6 +160,7 @@ def skills(df_skills):
     df_bonus_2 = df_bonus.sort_values(by='Skills', ascending=False)
 
     df_bonus_2.to_csv('data/result/skills_by_education_level.csv', index=False)
+
     print('skills_by_education_level.csv exported to data/results folder!')
 
 
